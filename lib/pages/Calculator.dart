@@ -16,6 +16,7 @@ class Calculator extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 18, 57, 142)),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: const MyHomePage(title: 'Calculator'),
     );
   }
@@ -85,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(20),
-            backgroundColor: const Color.fromARGB(255, 36, 42, 57),
+            backgroundColor: const Color.fromARGB(255, 25, 32, 50),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -103,10 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 21, 82, 112),
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Color.fromARGB(255, 21, 82, 112),
+      //   title: Text(widget.title),
+      // ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
