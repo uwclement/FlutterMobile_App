@@ -3,24 +3,39 @@ import 'package:mobile_app_flutter/pages/Calculator.dart';
 import 'package:mobile_app_flutter/pages/NavDrawer.dart';
 import 'package:mobile_app_flutter/pages/SignIn.dart';
 import 'package:mobile_app_flutter/pages/SignUp.dart';
+import 'package:mobile_app_flutter/pages/Theme_provider.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Tab Navigation Demo',
-      theme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 18, 57, 142),
-        ),
-        useMaterial3: true,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'Tab Navigation Demo',
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark().copyWith(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color.fromARGB(255, 18, 57, 142),
+            ),
+            useMaterial3: true,
+          ),
+          themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+          debugShowCheckedModeBanner: false,
+          home: const HomePage(),
+        );
+      },
     );
   }
 }

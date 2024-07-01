@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'Theme_provider.dart';
 
 class NavDrawer extends StatelessWidget {
   final Function(int) onItemSelected;
@@ -45,13 +47,18 @@ class NavDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Setting'),
-            onTap: () {
-              Navigator.pop(context);
-              // You can add a new index for settings if needed
-              // onItemSelected(3);
-            },
+            leading: const Icon(Icons.brightness_6),
+            title: const Text('Toggle Theme'),
+            trailing: Consumer<ThemeProvider>(
+              builder: (context, themeProvider, child) {
+                return Switch(
+                  value: themeProvider.isDarkMode,
+                  onChanged: (value) {
+                    themeProvider.toggleTheme();
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),
