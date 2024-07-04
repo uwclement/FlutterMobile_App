@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Theme_provider.dart';
-
+import 'package:mobile_app_flutter/pages/theme_provider.dart';
 class NavDrawer extends StatelessWidget {
   final Function(int) onItemSelected;
 
@@ -51,11 +50,14 @@ class NavDrawer extends StatelessWidget {
             title: const Text('Toggle Theme'),
             trailing: Consumer<ThemeProvider>(
               builder: (context, themeProvider, child) {
-                return Switch(
-                  value: themeProvider.isDarkMode,
-                  onChanged: (value) {
-                    themeProvider.toggleTheme();
-                  },
+                return SizedBox(
+                  width: 60, // Adjust this value as needed
+                  child: Switch(
+                    value: themeProvider.isDarkMode,
+                    onChanged: (value) {
+                      themeProvider.toggleTheme();
+                    },
+                  ),
                 );
               },
             ),
