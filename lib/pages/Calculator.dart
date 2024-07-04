@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'theme_provider.dart';
+
+void main() {
+  runApp(const Calculator());
+}
 
 class Calculator extends StatelessWidget {
   const Calculator({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const CalculatorBody(),
+    return MaterialApp(
+      title: 'Calculator',
+      theme: ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 18, 57, 142)),
+        useMaterial3: true,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(title: 'Calculator'),
     );
   }
 }
 
-class CalculatorBody extends StatefulWidget {
-  const CalculatorBody({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
 
   @override
-  State<CalculatorBody> createState() => _CalculatorBodyState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _CalculatorBodyState extends State<CalculatorBody> {
+class _MyHomePageState extends State<MyHomePage> {
   String _output = "0";
   String _input = "";
   String _operator = "";
@@ -92,59 +103,65 @@ class _CalculatorBodyState extends State<CalculatorBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.all(20),
-          alignment: Alignment.centerRight,
-          height: 120,
-          child: Text(
-            _output,
-            style: const TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue),
+    return Scaffold(
+      // appBar: AppBar(
+      //   backgroundColor: Color.fromARGB(255, 21, 82, 112),
+      //   title: Text(widget.title),
+      // ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.centerRight,
+            height: 120,
+            child: Text(
+              _output,
+              style: const TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
           ),
-        ),
-        const Divider(color: Colors.white),
-        Column(
-          children: [
-            Row(
-              children: <Widget>[
-                _buildButton("7"),
-                _buildButton("8"),
-                _buildButton("9"),
-                _buildButton("/", color: Colors.orange),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                _buildButton("4"),
-                _buildButton("5"),
-                _buildButton("6"),
-                _buildButton("*", color: Colors.orange),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                _buildButton("1"),
-                _buildButton("2"),
-                _buildButton("3"),
-                _buildButton("-", color: Colors.orange),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                _buildButton("0"),
-                _buildButton("C", color: Colors.red),
-                _buildButton("=", color: Colors.green),
-                _buildButton("+", color: Colors.orange),
-              ],
-            ),
-          ],
-        ),
-      ],
+          const Divider(color: Colors.white),
+          Column(
+            children: [
+              Row(
+                children: <Widget>[
+                  _buildButton("7"),
+                  _buildButton("8"),
+                  _buildButton("9"),
+                  _buildButton("/", color: Colors.orange),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  _buildButton("4"),
+                  _buildButton("5"),
+                  _buildButton("6"),
+                  _buildButton("*", color: Colors.orange),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  _buildButton("1"),
+                  _buildButton("2"),
+                  _buildButton("3"),
+                  _buildButton("-", color: Colors.orange),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  _buildButton("0"),
+                  _buildButton("C", color: Colors.red),
+                  _buildButton("=", color: Colors.green),
+                  _buildButton("+", color: Colors.orange),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
