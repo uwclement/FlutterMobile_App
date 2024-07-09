@@ -1,0 +1,12 @@
+{
+  "title": "Tab Navigation Demo",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "calculator": "Calculator",
+  "menu": "Menu",
+  "toggleTheme": "Toggle Theme",
+  "selectFromGallery": "Select from Gallery",
+  "takeAPicture": "Take a Picture",
+  "connectedToInternet": "Connected to the Internet",
+  "noInternetConnection": "No Internet Connection"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Demostración de navegación por pestañas",
+  "signIn": "Iniciar sesión",
+  "signUp": "Registrarse",
+  "calculator": "Calculadora",
+  "menu": "Menú",
+  "toggleTheme": "Cambiar tema",
+  "selectFromGallery": "Seleccionar de la galería",
+  "takeAPicture": "Tomar una foto",
+  "connectedToInternet": "Conectado a Internet",
+  "noInternetConnection": "Sin conexión a Internet"
+}

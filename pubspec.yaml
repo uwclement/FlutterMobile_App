@@ -47,6 +47,9 @@ dependencies:
   battery_plus: ^6.0.1
   audioplayers: ^6.0.0
   font_awesome_flutter: ^10.7.0
+  image_picker: ^1.1.2
+  flutter_localization: ^0.2.0
+  intl_translation: ^0.20.0
 #  flutter toast: ^8.2.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
