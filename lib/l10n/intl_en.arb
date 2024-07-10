@@ -1,12 +1,20 @@
 {
-  "title": "Tab Navigation Demo",
+  "appTitle": "My App",
   "signIn": "Sign In",
   "signUp": "Sign Up",
   "calculator": "Calculator",
+  "email": "Email",
+  "password": "Password",
+  "fullName": "Full Name",
+  "dontHaveAccount": "Don't have an account? Sign Up",
+  "signInWithGoogle": "Sign In with Google",
+  "signInWithFacebook": "Sign In with Facebook",
   "menu": "Menu",
   "toggleTheme": "Toggle Theme",
-  "selectFromGallery": "Select from Gallery",
-  "takeAPicture": "Take a Picture",
-  "connectedToInternet": "Connected to the Internet",
-  "noInternetConnection": "No Internet Connection"
+  "enterEmail": "Enter an email",
+  "enterPassword": "Enter a password 6+ chars long",
+  "enterFullName": "Enter your full name",
+  "invalidEmail": "Please supply a valid email",
+  "noInternet": "No Internet Connection",
+  "connected": "Connected to the Internet"
 }

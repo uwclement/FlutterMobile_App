@@ -1,12 +1,20 @@
 {
-  "title": "Demostración de navegación por pestañas",
-  "signIn": "Iniciar sesión",
+  "appTitle": "Mi Aplicación",
+  "signIn": "Iniciar Sesión",
   "signUp": "Registrarse",
   "calculator": "Calculadora",
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "fullName": "Nombre completo",
+  "dontHaveAccount": "¿No tienes una cuenta? Regístrate",
+  "signInWithGoogle": "Iniciar sesión con Google",
+  "signInWithFacebook": "Iniciar sesión con Facebook",
   "menu": "Menú",
   "toggleTheme": "Cambiar tema",
-  "selectFromGallery": "Seleccionar de la galería",
-  "takeAPicture": "Tomar una foto",
-  "connectedToInternet": "Conectado a Internet",
-  "noInternetConnection": "Sin conexión a Internet"
+  "enterEmail": "Ingresa un correo electrónico",
+  "enterPassword": "Ingresa una contraseña de al menos 6 caracteres",
+  "enterFullName": "Ingresa tu nombre completo",
+  "invalidEmail": "Por favor, proporciona un correo electrónico válido",
+  "noInternet": "Sin conexión a Internet",
+  "connected": "Conectado a Internet"
 }
