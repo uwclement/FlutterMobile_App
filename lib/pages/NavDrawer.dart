@@ -1,8 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Theme;
 import 'package:provider/provider.dart';
 import 'package:mobile_app_flutter/pages/theme_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
+
+import '../Data/database_helper.dart';
 
 class NavDrawer extends StatefulWidget {
   final Function(int) onItemSelected;
@@ -15,22 +19,47 @@ class NavDrawer extends StatefulWidget {
 
 class _NavDrawerState extends State<NavDrawer> {
   File? _image;
+  final DatabaseHelper _databaseHelper = DatabaseHelper();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileImage();
+  }
+
+  Future<void> _loadProfileImage() async {
+    String? imagePath = await _databaseHelper.getProfileImage();
+    if (imagePath != null) {
+      setState(() {
+        _image = File(imagePath);
+      });
+    }
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: source);
     if (pickedFile != null) {
+      final Directory appDir = await getApplicationDocumentsDirectory();
+      final String fileName = path.basename(pickedFile.path);
+      final File localImage = await File(pickedFile.path).copy('${appDir.path}/$fileName');
+
+      // Update the image in the database
+      await _databaseHelper.saveProfileImage(localImage.path);
+
       setState(() {
-        _image = File(pickedFile.path);
+        _image = localImage;
       });
-      Navigator.pop(context); // Close the modal after picking an image
+      if (mounted) {
+        Navigator.pop(context); // Close the modal after picking an image
+      }
     }
   }
 
-  void _showImageSourceOptions() {
-    showModalBottomSheet(
+  void _showImageSourceOptions(BuildContext context) {
+    showModalBottomSheet<void>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (BuildContext ctx) {
         return SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -59,7 +88,7 @@ class _NavDrawerState extends State<NavDrawer> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           SizedBox(
-            height: 180, // Adjust this height as needed
+            height: 180,
             child: DrawerHeader(
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 36, 42, 57),
@@ -73,7 +102,7 @@ class _NavDrawerState extends State<NavDrawer> {
                   ),
                   const SizedBox(height: 5),
                   GestureDetector(
-                    onTap: _showImageSourceOptions,
+                    onTap: () => _showImageSourceOptions(context),
                     child: CircleAvatar(
                       radius: 35,
                       backgroundColor: Colors.white,
@@ -115,7 +144,7 @@ class _NavDrawerState extends State<NavDrawer> {
             leading: const Icon(Icons.brightness_6),
             title: const Text('Toggle Theme'),
             trailing: Consumer<ThemeProvider>(
-              builder: (context, themeProvider, child) {
+              builder: (BuildContext ctx, ThemeProvider themeProvider, Widget? child) {
                 return Switch(
                   value: themeProvider.isDarkMode,
                   onChanged: (value) {
